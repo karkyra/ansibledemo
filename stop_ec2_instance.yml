@@ -4,7 +4,7 @@
   connection: local 
   gather_facts: false 
   vars:
-    stopped_instance_ids: [i-060cfae3106e4817c]
+    stopped_instance_ids: []
   tasks:
     - name: stopping ec2 instance 
       shell: |
