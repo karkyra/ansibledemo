@@ -8,5 +8,5 @@
       ec2:
         instance_ids: i-060cfae3106e4817c
         region: us-east-1
-        state: started
+        state: running
 
