@@ -8,6 +8,7 @@
   tasks:
     - name: stopping ec2 instance 
       shell: |
-        aws ec2 stop-instances --instance-ids "{{item}}"
+        aws ec2 stop-instances --instance-ids "{{item}}" --region us-east-1
       with_items: "{{stopped_instance_ids}}"
+      
 
