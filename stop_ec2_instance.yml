@@ -3,10 +3,11 @@
   hosts: localhost 
   connection: local 
   gather_facts: false 
+  vars:
+    stopped_instance_ids: []
   tasks:
-    - name: starting ec2 instance 
-      ec2:
-        instance_ids: i-060cfae3106e4817c
-        region: us-east-1
-        state: stopped
+    - name: stopping ec2 instance 
+      shell: |
+        aws ec2 stop-instances --instance-ids "{{item}}"
+      with_items: "{{stopped_instance_ids}}"
 
