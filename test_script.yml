@@ -1,4 +1,5 @@
-me: This play is for testing
+---
+- name: This play is for testing
   hosts: localhost
   gather_facts: false
   vars:
