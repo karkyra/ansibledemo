@@ -1,0 +1,10 @@
+me: This play is for testing
+  hosts: localhost
+  gather_facts: false
+  vars:
+    your_name:
+  tasks:
+    - name: Display message
+      debug:
+        msg: "Your name is {{your_name}}"
+
