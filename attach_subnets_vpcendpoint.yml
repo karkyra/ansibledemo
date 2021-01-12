@@ -1,0 +1,13 @@
+---
+- name: This play is used to start ec2 instance 
+  hosts: localhost 
+  connection: local 
+  gather_facts: false 
+  vars:
+    endpoint-id: 
+    subnet-ids: []
+  tasks:
+    - name: Adding subnet to vpc endpoint 
+      shell: |
+        aws ec2 modify-vpc-endpoint --vpc-endpoint-id "{{endpoint-id}}" --remove-subnet-ids "{{item}}"
+      with_items: "{{subnet-ids}}"
