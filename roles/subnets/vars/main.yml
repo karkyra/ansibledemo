@@ -1,4 +1,4 @@
 ---
 # vars file for subnets
-endpoint_id: 
+endpoint_id: ""
 subnet_ids: []
