@@ -1,0 +1,4 @@
+---
+# defaults file for subnets
+endpoint_id: 
+subnet_ids: []

@@ -1,0 +1,7 @@
+---
+- name: This play is used to start ec2 instance 
+  hosts: localhost 
+  connection: local 
+  gather_facts: false 
+  roles:
+  - { role: subnets }
