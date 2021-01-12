@@ -7,7 +7,7 @@
     endpoint_id: 
     subnet_ids: []
   tasks:
-    - name: Adding subnet to vpc endpoint 
+    - name: Removing subnet to vpc endpoint 
       shell: |
         aws ec2 modify-vpc-endpoint --vpc-endpoint-id "{{endpoint_id}}" --remove-subnet-ids "{{item}}"
-      with_items: "{{subnet_ids}}"
+      with_items: "{{subnet_ids}}" --region us-east-1
