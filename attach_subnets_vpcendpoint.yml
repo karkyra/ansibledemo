@@ -4,10 +4,10 @@
   connection: local 
   gather_facts: false 
   vars:
-    endpoint-id: 
-    subnet-ids: []
+    endpoint_id: 
+    subnet_ids: []
   tasks:
     - name: Adding subnet to vpc endpoint 
       shell: |
-        aws ec2 modify-vpc-endpoint --vpc-endpoint-id "{{endpoint-id}}" --remove-subnet-ids "{{item}}"
-      with_items: "{{subnet-ids}}"
+        aws ec2 modify-vpc-endpoint --vpc-endpoint-id "{{endpoint_id}}" --remove-subnet-ids "{{item}}"
+      with_items: "{{subnet_ids}}"
