@@ -4,4 +4,4 @@
   connection: local 
   gather_facts: false 
   roles:
-  - { role: subnets }
+  - role: task/subnets
