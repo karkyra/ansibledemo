@@ -4,4 +4,4 @@
   connection: local 
   gather_facts: false 
   roles:
-   - ../roles/subnets
+   - role: '../roles/subnets'
