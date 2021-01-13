@@ -1,0 +1,4 @@
+- name: Removing subnet to vpc endpoint
+  shell: |
+    aws ec2 modify-vpc-endpoint --vpc-endpoint-id "{{ endpoint_id }}" --remove-subnet-ids "{{item}}" --region us-east-1
+  with_items: "{{ subnet_ids }}"
