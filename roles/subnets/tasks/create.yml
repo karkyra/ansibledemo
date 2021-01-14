@@ -9,3 +9,10 @@
     aws elb attach-load-balancer-to-subnets --load-balancer-name "{{ service_id }}" --subnets "{{item.split(':')[0] }}" --region us-east-1
   with_items: "{{ subnet_ids }}"
   when: aws_service == "ELB"   
+
+
+- name: Attach subnet to ALB
+  shell: |
+    aws elbv2 set-subnets --load-balancer-arn "{{ service_id }}" --subnets "{{item.split(':')[0] }}" --region us-east-1
+  with_items: "{{ subnet_ids }}"
+  when: aws_service == "ALB"
