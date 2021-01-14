@@ -1,3 +1,4 @@
 ---
-endpoint_id:
+service_id:
+aws_service:
 subnet_ids: []
