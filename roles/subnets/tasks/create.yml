@@ -2,9 +2,9 @@
   shell: |
     aws ec2 modify-vpc-endpoint --vpc-endpoint-id "{{ service_id }}" --add-subnet-ids "{{item.split(':')[0] }}" --region us-east-1
   with_items: "{{ subnet_ids }}"
-  when: "aws_service" == "VPCE"
+  when: aws_service == "VPCE"
 
   shell: |
     aws elb attach-load-balancer-to-subnets --load-balancer-name "{{ service_id }}" --subnets "{{item.split(':')[0] }}" --region us-east-1
   with_items: "{{ subnet_ids }}"
-  when: "aws_service" == "ELB"   
+  when: aws_service == "ELB"   
