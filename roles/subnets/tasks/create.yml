@@ -15,3 +15,9 @@
      aws elbv2 set-subnets --load-balancer-arn {{ service_id }} --subnets {{ subnet_ids | join(" ")}} --region us-east-1
 #   with_items: "{{ subnet_ids }}"
   when: aws_service == "ALB"
+
+- name: Attach subnet to NLB
+  shell: |
+     aws elbv2 set-subnets --load-balancer-arn {{ service_id }} --subnets {{ subnet_ids | join(" ")}} --region us-east-1
+#   with_items: "{{ subnet_ids }}"
+  when: aws_service == "NLB"
