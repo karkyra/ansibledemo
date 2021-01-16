@@ -1,31 +1,23 @@
-- name: Parsing subnet name 
-    set_fact: subnet_item="{{item.split(':')[0]}}"
-    with_items: "{{ subnet_ids }}"
-    register: foo_result
-
-  - name: Make a list
-    set_fact: subnet_names="{{ foo_result.results | map(attribute='ansible_facts.subnet_item') | list }}"  
-
 - name: Attach subnet to vpc endpoint
   shell: |
     aws ec2 modify-vpc-endpoint --vpc-endpoint-id "{{ service_id }}" --add-subnet-ids "{{ item }}" --region us-east-1
-  with_items: "{{ subnet_names }}"
+  with_items: "{{ subnet_ids }}"
   when: aws_service == "VPCE"
 
 - name: Attach subnet to ELB
   shell: |
     aws elb attach-load-balancer-to-subnets --load-balancer-name "{{ service_id }}" --subnets "{{ item }}" --region us-east-1
-  with_items: "{{ subnet_names }}"
+  with_items: "{{ subnet_ids }}"
   when: aws_service == "ELB"   
  
 - name: Attach subnet to ALB
   shell: |
-     aws elbv2 set-subnets --load-balancer-arn {{ service_id }} --subnets {{ subnet_names | join(" ")}} --region us-east-1
+     aws elbv2 set-subnets --load-balancer-arn {{ service_id }} --subnets {{ subnet_ids | join(" ")}} --region us-east-1
 #   with_items: "{{ subnet_ids }}"
   when: aws_service == "ALB"
 
 - name: Attach subnet to NLB
   shell: |
-     aws elbv2 set-subnets --load-balancer-arn {{ service_id }} --subnets {{ subnet_names | join(" ")}} --region us-east-1
+     aws elbv2 set-subnets --load-balancer-arn {{ service_id }} --subnets {{ subnet_ids | join(" ")}} --region us-east-1
 #   with_items: "{{ subnet_ids }}"
   when: aws_service == "NLB"
