@@ -1,10 +1,10 @@
 - name: Parsing subnet name 
-    set_fact: subnet_item="{{item.split(':')[0]}}"
-    with_items: "{{ subnet_ids }}"
-    register: foo_result
+  set_fact: subnet_item="{{item.split(':')[0]}}"
+  with_items: "{{ subnet_ids }}"
+  register: foo_result
 
-  - name: Make a list
-    set_fact: subnet_names="{{ foo_result.results | map(attribute='ansible_facts.subnet_item') | list }}"  
+- name: Make a list
+  set_fact: subnet_names="{{ foo_result.results | map(attribute='ansible_facts.subnet_item') | list }}"  
 
 - name: Attach subnet to vpc endpoint
   shell: |
